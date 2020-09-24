@@ -37,46 +37,42 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: GestureDetector(
-                    onTap:(){
-                      setState(() {
-                        selectedGender = Gender.male;
-                      });
-                    },
-                      child: ReusableCard(
+                    child: ReusableCard(
+                      onPress: (){
+                        setState(() {
+                            selectedGender = Gender.male;
+                        });
+                      },
                         colour:  selectedGender == Gender.male ? activeCardColour : inActiveCardColour,
                         cardChild: IconContent(
-                          icon:FontAwesomeIcons.mars,
-                          label: 'MALE',
+                        icon:FontAwesomeIcons.mars,
+                        label: 'MALE',
                         ),
-                      ),
-                  ),
-               ),
+                        ),
+                        ),
                   Expanded(
-                    child: GestureDetector(
-                      onTap: (){
+                        child: ReusableCard(
+                        onPress: (){
                         setState(() {
                           selectedGender = Gender.female;
                         });
-                      },
-
-                      child: ReusableCard(
-                        colour:  selectedGender == Gender.female ? activeCardColour : inActiveCardColour,
-                        cardChild: IconContent(
-                          icon:FontAwesomeIcons.venus,
-                          label: 'FEMALE',
+                          },
+                          colour:  selectedGender == Gender.female ? activeCardColour : inActiveCardColour,
+                          cardChild: IconContent(
+                              icon:FontAwesomeIcons.venus,
+                              label: 'FEMALE',
+                          ),
                         ),
-                      ),
-                  ),
-               ),
+                        ),
                 ],
               ),
             ),
             Expanded(
-                child: ReusableCard(
+                  child: ReusableCard(
                   colour:  activeCardColour,
-              ),
-            ),
+                  ),
+                  ),
+
             Expanded(
               child: Row(
               children: <Widget>[

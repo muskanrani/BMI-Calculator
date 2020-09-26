@@ -22,6 +22,7 @@ class _InputPageState extends State<InputPage> {
 
   Gender selectedGender;
   int height = 180;
+  int weight = 50;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,12 +113,45 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   ),
-
             Expanded(
               child: Row(
               children: <Widget>[
                   Expanded(child: ReusableCard(
                     colour:  kActiveCardColour,
+                    cardChild: Column(
+                      children: <Widget>[
+                        Text('WEIGHT',
+                        style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kBoldTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            RoundIconButton(icon: FontAwesomeIcons.minus,
+                            onPressed: (){
+                              setState(() {
+                                weight--;
+                              }
+                              );
+                            },
+                            ),
+                            SizedBox(
+                              width: 15.0,
+                            ),
+                            RoundIconButton(icon: FontAwesomeIcons.plus,
+                              onPressed: (){
+                                setState(() {
+                                  weight++;
+                                }
+                                );
+                              },),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                   ),
                   Expanded(child: ReusableCard(
@@ -139,4 +173,24 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({@required this.icon, @required this.onPressed});
 
+  final IconData icon;
+  final Function onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      elevation: 0.0,
+      child: Icon(icon),
+      onPressed: onPressed,
+      constraints: BoxConstraints.tightFor(
+        width: 56.0,
+        height: 56.0,
+      ),
+      shape: CircleBorder(),
+      fillColor: Color(0xFF4C4F5E),
+    );
+  }
+}

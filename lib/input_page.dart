@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
+import 'results_page.dart';
 
 enum Gender{
   female,
@@ -23,6 +24,7 @@ class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 180;
   int weight = 50;
+  int age = 19;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,17 +158,63 @@ class _InputPageState extends State<InputPage> {
                   ),
                   Expanded(child: ReusableCard(
                     colour:  kActiveCardColour,
+                    cardChild: Column(
+                      children: <Widget>[
+                        Text('AGE',
+                        style: kLabelTextStyle,
+                        ),
+                        Text(age.toString(),
+                        style: kBoldTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                          RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed:(){
+                                setState(() {
+                                  age--;
+                                });
+
+                              }
+                          ),
+                          SizedBox(
+                            width: 15.0,
+                          ),
+                          RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: (){
+                                setState(() {
+                                  age++;
+                                });
+
+                          }
+                          ),
+                        ],
+                        ),
+                      ],
+                    ),
                   ),
                   ),
                   ],
               ),
 
             ),
-          Container(
-            color: kBottomCardColour,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          GestureDetector(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ResultsPage()));
+            },
+            child: Container(
+              child: Center(
+                child: Text('CALCULATE',
+                style: kLargeButtonTextStyle,
+                ),
+              ),
+              color: kBottomCardColour,
+              margin: EdgeInsets.only(top: 10.0),
+              width: double.infinity,
+              height: kBottomContainerHeight,
+            ),
           ),
           ],
         ),
